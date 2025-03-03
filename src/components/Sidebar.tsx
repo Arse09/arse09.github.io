@@ -19,7 +19,7 @@ const Sidebar = () => (
 			profession={"Full Stack Developer"}
 			badges={[
 				{text: "Apprentice Level", color: "red"},
-				{text: "Alpha", color: "purple"},
+				{text: "Alpha | v" + import.meta.env.VITE_APP_VERSION, color: "purple"},
 			]}
 		/>
 		<Navbar>
