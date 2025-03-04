@@ -1,6 +1,5 @@
 const AboutMe = () => (
 	<>
-		<div className={"divider"}/>
 		<div id={"about-me"} className={"about-me w-full p-8"}>
 			<h2 className={"title mb-5"}>About Me</h2>
 			<p className={"text text-justify text-wrap"}>
