@@ -31,7 +31,7 @@ It serves as a portfolio where I showcase my projects, skills, and my contact in
 ![Unknown](https://img.shields.io/badge/Unknown-lightgray?style=for-the-badge)
 
 **Database:**   
-![None](https://img.shields.io/badge/Unknown-lightgray?style=for-the-badge)
+![None](https://img.shields.io/badge/None-lightgray?style=for-the-badge)
 
 
 ## 📜 License
