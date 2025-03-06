@@ -37,7 +37,11 @@
 			color: white;
 			z-index: 10;
 			opacity: 1;
-			transition: opacity 0.2s ease-out;
+			transition: opacity 0.2s ease-out, background 0.5s ease, color 0.5s ease;
+		}
+		.light-mode #loading {
+			background: rgba(255, 255, 255, 0.8);
+			color: black;
 		}
 		.fade-out {
 			opacity: 0 !important;
@@ -89,7 +93,7 @@
   if (path === "/projects" || path === "/projects/") {
     window.location.href = "/";
   } else {
-    history.pushState(null, null, path + "-->/404/ This page does not exist :(");
+    history.pushState(null, null, "/404/page-not-found");
   }
 
   function getRandomDesign() {
