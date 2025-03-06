@@ -36,7 +36,7 @@ It serves as a portfolio where I showcase my projects, skills, and my contact in
 
 ## 📜 License
 
-© 2025 Arsenii Nepeyvoda aka Arse09. All rights reserved.
+Copyright (c) 2025 Arsenii Nepeyvoda aka. Arse09
 
 ---  
 Made with ❤️ by [Arse09](https://github.com/Arse09)  
