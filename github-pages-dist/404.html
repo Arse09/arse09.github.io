@@ -94,6 +94,9 @@
     window.location.href = "/";
   } else {
     history.pushState(null, null, path + "<--/404/ That page was not found. ):");
+    window.onbeforeunload = function() {
+      history.pushState(null, null, path);
+    }
   }
 
   function getRandomDesign() {
