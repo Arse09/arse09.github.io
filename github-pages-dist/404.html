@@ -78,36 +78,32 @@
 <div id="root" style="display: none;"></div>
 
 <script>
-  // Selección de elementos
   const canvas = document.getElementById('gameCanvas');
   const ctx = canvas.getContext('2d');
   const loadingElement = document.getElementById('loading');
   const rootElement = document.getElementById('root');
   const path = window.location.pathname;
 
-  // Ajusta el tamaño del canvas al tamaño de la ventana
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
 
-  // Propiedades de la bola
   let ball = {
     x: canvas.width / 2,
     y: canvas.height / 2,
     radius: 20,
-    dx: 4,  // Velocidad horizontal
-    dy: 4,  // Velocidad vertical
+    dx: 4,
+    dy: 4,
     gravity: 0.5,
-    bounce: 0.8
+    bounce: 0.8,
+    friction: 0.98
   };
 
-  // Redirige si estás en la ruta /projects
   if (path === "/projects" || path === "/projects/") {
     window.location.href = "/";
   } else {
     history.pushState(null, null, "/404/page-not-found");
   }
 
-  // Función para dibujar la bola
   function drawBall() {
     ctx.beginPath();
     ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
@@ -116,30 +112,31 @@
     ctx.closePath();
   }
 
-  // Función para actualizar la posición de la bola
   function updateBall() {
     ball.x += ball.dx;
     ball.y += ball.dy;
-    ball.dy += ball.gravity;  // Aplicar gravedad a la bola
+    ball.dy += ball.gravity;
 
-    // Colisiones con los bordes
     if (ball.x + ball.radius > canvas.width || ball.x - ball.radius < 0) {
-      ball.dx = -ball.dx * ball.bounce;  // Rebote horizontal
+      ball.dx = -ball.dx * ball.bounce;
     }
-    if (ball.y + ball.radius > canvas.height || ball.y - ball.radius < 0) {
-      ball.dy = -ball.dy * ball.bounce;  // Rebote vertical
+    if (ball.y + ball.radius > canvas.height) {
+      ball.dy = -ball.dy * ball.bounce;
+      ball.y = canvas.height - ball.radius;
+      ball.dx *= ball.friction;
+      ball.dy *= ball.friction;
+      if (Math.abs(ball.dy) < 0.1) ball.dy = 0;
+      if (Math.abs(ball.dx) < 0.1) ball.dx = 0;
     }
   }
 
-  // Función para animar la bola
   function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);  // Limpiar el canvas
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawBall();
     updateBall();
     requestAnimationFrame(animate);
   }
 
-  // Función para mostrar el contenido de la página 404
   function getRandomDesign() {
     const designs = [
       `<h1>404 - Page Not Found</h1><p>The darkness has consumed this page.</p>`,
@@ -162,17 +159,14 @@
     localStorage.setItem('theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
   }
 
-  // Al cargar la página, se guarda el tema y se carga el contenido
   window.onload = () => {
     const savedTheme = localStorage.getItem('theme') || 'dark';
     if (savedTheme === 'light') {
       document.body.classList.add('light-mode');
     }
     requestAnimationFrame(loadPage);
-    animate();  // Iniciar animación de la bola
+    animate();
   };
 </script>
 </body>
 </html>
-
-
