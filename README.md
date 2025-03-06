@@ -1,7 +1,7 @@
 # My Personal Website
 
-[![Netlify](https://img.shields.io/badge/Netlify-arse09.netlify.app-100000?style=for-the-badge&logo=netlify&logoColor=white)](https://arse09.netlify.app)
-[![GitHub](https://img.shields.io/badge/Github%20Arse09-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Arse09) 
+[![Netlify](https://img.shields.io/badge/Netlify-arse09.netlify.app-15847D?style=for-the-badge&logo=netlify&logoColor=white)](https://arse09.netlify.app)
+[![GitHub Arse09](https://img.shields.io/badge/GitHub%20Arse09-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Arse09)  
 [![Copyright](https://img.shields.io/badge/Copyright-%C2%A9%202025-blue?style=for-the-badge)](https://github.com/Arse09/main-page-alpha/blob/main/LICENCE)
 [![Feedback](https://img.shields.io/badge/Feedback-Welcome-brightgreen?style=for-the-badge)](https://github.com/Arse09/main-page-alpha/issues)
 
