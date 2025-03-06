@@ -3,198 +3,176 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Error 404 - Page Not Found</title>
+  <meta name="description" content="404 Error Page - Page not found">
+  <meta name="robots" content="noindex, nofollow">
+  <title>404 Not Found</title>
   <style>
-		/* Global Styles */
 		body {
-			font-family: 'Arial', sans-serif;
 			margin: 0;
-			padding: 0;
-			background: url('https://www.transparenttextures.com/patterns/vertical-stripes.png') repeat, linear-gradient(135deg, #1b1e2d, #2b2d42);
+			font-family: Arial, sans-serif;
+			background: #111;
 			color: #fff;
 			display: flex;
-			justify-content: center;
 			align-items: center;
+			justify-content: center;
 			height: 100vh;
 			overflow: hidden;
-			text-align: center;
-			animation: fadeIn 1.5s ease-in;
+			transition: background 0.5s ease, color 0.5s ease;
+			flex-direction: column;
+			position: relative;
 		}
-
-		/* Fade-in Animation */
-		@keyframes fadeIn {
-			0% { opacity: 0; }
-			100% { opacity: 1; }
+		.light-mode {
+			background: #fff;
+			color: #111;
 		}
-
-		.container {
-			background: rgba(0, 0, 0, 0.6);
-			padding: 40px 60px;
-			border-radius: 25px;
-			box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
-			transform: scale(0.9);
-			animation: scaleUp 0.3s ease-in-out forwards;
-			max-width: 500px;
-			width: 90%;
+		#loading {
+			font-size: 24px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			height: 100vh;
+			width: 100%;
+			position: absolute;
+			background: rgba(0, 0, 0, 0.8);
+			color: white;
+			z-index: 10;
 		}
-
-		/* Scale-up Animation */
-		@keyframes scaleUp {
-			0% { transform: scale(0.8); }
-			100% { transform: scale(1); }
-		}
-
-		.title {
-			font-size: 3.5rem;
-			font-weight: bold;
-			color: #f76c6c;
-			margin-bottom: 20px;
-		}
-
-		.message {
-			font-size: 1.2rem;
-			margin-bottom: 30px;
-			color: #f8f8f8;
-			line-height: 1.5;
-		}
-
-		.back-link {
-			color: #fff;
-			text-decoration: none;
-			font-size: 1.3rem;
-			padding: 12px 25px;
-			border: 2px solid #f76c6c;
-			border-radius: 8px;
-			background-color: transparent;
-			transition: all 0.3s ease;
-			margin-top: 20px;
-		}
-
-		.back-link:hover {
-			background-color: #f76c6c;
-			color: #222831;
-			transform: translateY(-3px);
-		}
-
-		.error-code {
-			font-size: 5rem;
-			font-weight: 800;
-			color: #f76c6c;
-			margin-bottom: 20px;
-			animation: shake 0.5s ease-out;
-		}
-
-		/* Shake Animation */
-		@keyframes shake {
-			0% { transform: translateX(0); }
-			25% { transform: translateX(-10px); }
-			50% { transform: translateX(10px); }
-			75% { transform: translateX(-10px); }
-			100% { transform: translateX(0); }
-		}
-
-		.illustration {
-			width: 250px;
-			margin-top: 40px;
-			animation: pulse 1.5s infinite;
-		}
-
-		/* Pulse Animation */
-		@keyframes pulse {
-			0% { transform: scale(1); }
-			50% { transform: scale(1.05); }
-			100% { transform: scale(1); }
-		}
-
-		.icon {
-			font-size: 3rem;
-			margin-top: 30px;
-			color: #fff;
+		.toggle-mode {
+			position: absolute;
+			top: 20px;
+			right: 20px;
+			padding: 10px 20px;
+			background: #444;
+			color: white;
+			border: none;
 			cursor: pointer;
-			transition: transform 0.3s;
+			border-radius: 20px;
+			transition: background 0.3s;
 		}
-
-		.icon:hover {
-			transform: rotate(360deg);
+		.toggle-mode:hover {
+			background: #666;
 		}
-
-		/* Responsive Design */
-		@media (max-width: 768px) {
-			.container {
-				padding: 30px 40px;
-			}
-
-			.title {
-				font-size: 3rem;
-			}
-
-			.message {
-				font-size: 1.1rem;
-			}
-
-			.error-code {
-				font-size: 4rem;
-			}
-
-			.illustration {
-				width: 200px;
-			}
+		.light-mode .toggle-mode {
+			background: #ddd;
+			color: black;
 		}
-
-		@media (max-width: 480px) {
-			.container {
-				padding: 20px 30px;
-			}
-
-			.title {
-				font-size: 2.5rem;
-			}
-
-			.message {
-				font-size: 1rem;
-			}
-
-			.error-code {
-				font-size: 3rem;
-			}
-
-			.illustration {
-				width: 180px;
-			}
+		.background {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			background: radial-gradient(circle at center, rgba(255,255,255,0.1), transparent);
+			z-index: -1;
+		}
+		canvas {
+			position: absolute;
+			top: 0;
+			left: 0;
 		}
   </style>
 </head>
 <body>
+<div class="background"></div>
+<button class="toggle-mode" onclick="toggleMode()">Toggle Mode</button>
+<div id="loading">Loading...</div>
+<canvas id="gameCanvas"></canvas>
+<div id="root" style="display: none;"></div>
 
-<div class="container">
-  <div class="error-code">404</div>
-  <div class="title">Oops! Page Not Found</div>
-  <div class="message">
-    The page you’re looking for has vanished into thin air.<br>
-    But don’t worry, we’ve got you covered!
-  </div>
-  <a href="/" class="back-link">Return to Home</a>
+<script>
+  // Selección de elementos
+  const canvas = document.getElementById('gameCanvas');
+  const ctx = canvas.getContext('2d');
+  const loadingElement = document.getElementById('loading');
+  const rootElement = document.getElementById('root');
+  const path = window.location.pathname;
 
-  <!-- Fun Illustration (SVG or Image) -->
-  <img src="https://cdn-icons-png.flaticon.com/512/928/928134.png" alt="404 Illustration" class="illustration">
+  // Ajusta el tamaño del canvas al tamaño de la ventana
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
 
-  <div class="icon" onclick="window.location.reload();">🔄</div>
-</div>
+  // Propiedades de la bola
+  let ball = {
+    x: canvas.width / 2,
+    y: canvas.height / 2,
+    radius: 20,
+    dx: 4,  // Velocidad horizontal
+    dy: 4,  // Velocidad vertical
+    gravity: 0.5,
+    bounce: 0.8
+  };
 
-<script defer>
-  // JavaScript to handle page redirection behavior
-  let path = window.location.pathname;
-
-  // Check if the path is '/projects'
-  if (path === "/projects") {
-    // Redirect to '/' and reload the page
+  // Redirige si estás en la ruta /projects
+  if (path === "/projects" || path === "/projects/") {
     window.location.href = "/";
   } else {
-    // For all other invalid paths, update the URL to '/404' without reloading
-    window.history.replaceState({}, document.title, "/404/page-not-found :)");
+    history.pushState(null, null, "/404/page-not-found");
   }
-</script>
 
+  // Función para dibujar la bola
+  function drawBall() {
+    ctx.beginPath();
+    ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
+    ctx.fillStyle = 'orange';
+    ctx.fill();
+    ctx.closePath();
+  }
+
+  // Función para actualizar la posición de la bola
+  function updateBall() {
+    ball.x += ball.dx;
+    ball.y += ball.dy;
+    ball.dy += ball.gravity;  // Aplicar gravedad a la bola
+
+    // Colisiones con los bordes
+    if (ball.x + ball.radius > canvas.width || ball.x - ball.radius < 0) {
+      ball.dx = -ball.dx * ball.bounce;  // Rebote horizontal
+    }
+    if (ball.y + ball.radius > canvas.height || ball.y - ball.radius < 0) {
+      ball.dy = -ball.dy * ball.bounce;  // Rebote vertical
+    }
+  }
+
+  // Función para animar la bola
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);  // Limpiar el canvas
+    drawBall();
+    updateBall();
+    requestAnimationFrame(animate);
+  }
+
+  // Función para mostrar el contenido de la página 404
+  function getRandomDesign() {
+    const designs = [
+      `<h1>404 - Page Not Found</h1><p>The darkness has consumed this page.</p>`,
+      `<h1>Oops! Lost in Space</h1><p>Looks like this page drifted into a black hole.</p>`,
+      `<h1>Error 404</h1><p>Even the night couldn't find this page.</p>`,
+      `<h1>Glitched Out</h1><p>This page got lost in the void.</p>`,
+      `<h1>Page Not Found</h1><p>You seem to have entered an unknown dimension.</p>`
+    ];
+    return designs[Math.floor(Math.random() * designs.length)];
+  }
+
+  function loadPage() {
+    rootElement.style.display = 'block';
+    rootElement.innerHTML = getRandomDesign();
+    loadingElement.style.display = 'none';
+  }
+
+  function toggleMode() {
+    document.body.classList.toggle('light-mode');
+    localStorage.setItem('theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
+  }
+
+  // Al cargar la página, se guarda el tema y se carga el contenido
+  window.onload = () => {
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    if (savedTheme === 'light') {
+      document.body.classList.add('light-mode');
+    }
+    requestAnimationFrame(loadPage);
+    animate();  // Iniciar animación de la bola
+  };
+</script>
 </body>
 </html>
+
 
