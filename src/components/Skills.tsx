@@ -2,10 +2,10 @@ import React from "react";
 import { FlexCard, FlexCards } from "./utilities/FlexCards.tsx";
 import Badge from "./utilities/Badge.tsx";
 
-const AboutMe: React.FC = () => (
+const Skills: React.FC = () => (
 	<>
 		<div className={"divider h-[3px] bg-(--border-color) w-[calc(100%-200px)]"}/>
-		<div id={"skills"} className={"about-me w-full p-8 h-[200vh]"}>
+		<div id={"skills"} className={"about-me w-full p-8"}>
 			<h2 className={"title mb-5"}>Skills</h2>
 			<FlexCards rows={2} className={"skills-cards"}>
 				<FlexCard className={"card"}>
@@ -58,4 +58,4 @@ const AboutMe: React.FC = () => (
 		</div>
 	</>
 )
-export default AboutMe
+export default Skills

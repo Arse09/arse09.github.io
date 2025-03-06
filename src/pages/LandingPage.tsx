@@ -3,6 +3,7 @@ import Sidebar from "../components/Sidebar.tsx";
 import AboutMe from "../components/AboutMe.tsx";
 import RecentProjects from "../components/RecentProjects.tsx";
 import Skills from "../components/Skills.tsx";
+import CV from "../components/CV.tsx";
 
 type MainProps = {
 	children: ReactNode
@@ -22,6 +23,7 @@ const LandingPage: React.FC = () => {
 				<AboutMe />
 				<RecentProjects />
 				<Skills />
+				<CV disabled/>
 			</Main>
 		</>
 	)
