@@ -93,9 +93,9 @@
   if (path === "/projects" || path === "/projects/") {
     window.location.href = "/";
   } else {
-    history.pushState(null, null, path + "<--/404/ That page was not found. ):");
+    history.pushState(null, null, "/404");
     window.onbeforeunload = function() {
-      window.location.pathname = "/";
+      window.location.href = "/";
     }
   }
 
