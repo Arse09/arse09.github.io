@@ -95,7 +95,7 @@
   } else {
     history.pushState(null, null, path + "<--/404/ That page was not found. ):");
     window.onbeforeunload = function() {
-      history.pushState(null, null, path);
+      window.location.pathname = "/";
     }
   }
 
