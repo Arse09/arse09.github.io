@@ -10,7 +10,7 @@
 			font-family: 'Arial', sans-serif;
 			margin: 0;
 			padding: 0;
-			background-color: #2b2d42;
+			background-color: #222831;
 			color: #fff;
 			display: flex;
 			justify-content: center;
@@ -18,59 +18,125 @@
 			height: 100vh;
 			overflow: hidden;
 			text-align: center;
+			background: url('https://www.transparenttextures.com/patterns/vertical-stripes.png') repeat;
+			animation: fadeIn 1s ease-in;
+		}
+
+		/* Fade-in Animation */
+		@keyframes fadeIn {
+			0% { opacity: 0; }
+			100% { opacity: 1; }
 		}
 
 		.container {
-			background: #1f2235;
-			padding: 30px 50px;
-			border-radius: 10px;
-			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+			background: #393e46;
+			padding: 40px 60px;
+			border-radius: 20px;
+			box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+			transform: scale(0.9);
+			animation: scaleUp 0.3s ease-in-out forwards;
+		}
+
+		/* Scale-up Animation */
+		@keyframes scaleUp {
+			0% { transform: scale(0.8); }
+			100% { transform: scale(1); }
 		}
 
 		.title {
-			font-size: 3rem;
+			font-size: 4rem;
 			font-weight: bold;
 			color: #f76c6c;
-			margin-bottom: 10px;
+			margin-bottom: 20px;
 		}
 
 		.message {
-			font-size: 1.5rem;
-			margin-bottom: 20px;
+			font-size: 1.4rem;
+			margin-bottom: 30px;
+			color: #f8f8f8;
+			line-height: 1.5;
 		}
 
 		.back-link {
-			color: #8d92a3;
+			color: #fff;
 			text-decoration: none;
-			font-size: 1.2rem;
-			padding: 10px 20px;
-			border: 2px solid #8d92a3;
-			border-radius: 5px;
+			font-size: 1.3rem;
+			padding: 12px 25px;
+			border: 2px solid #f76c6c;
+			border-radius: 8px;
 			background-color: transparent;
-			transition: background-color 0.3s;
+			transition: all 0.3s ease;
 		}
 
 		.back-link:hover {
-			background-color: #8d92a3;
-			color: #2b2d42;
+			background-color: #f76c6c;
+			color: #222831;
+			transform: translateY(-3px);
 		}
 
 		.error-code {
-			font-size: 5rem;
-			font-weight: 700;
+			font-size: 6rem;
+			font-weight: 800;
 			color: #f76c6c;
 			margin-bottom: 20px;
+			animation: shake 0.5s ease-out;
+		}
+
+		/* Shake Animation */
+		@keyframes shake {
+			0% { transform: translateX(0); }
+			25% { transform: translateX(-10px); }
+			50% { transform: translateX(10px); }
+			75% { transform: translateX(-10px); }
+			100% { transform: translateX(0); }
+		}
+
+		.illustration {
+			width: 200px;
+			margin-top: 40px;
+			animation: pulse 1.5s infinite;
+		}
+
+		/* Pulse Animation */
+		@keyframes pulse {
+			0% { transform: scale(1); }
+			50% { transform: scale(1.05); }
+			100% { transform: scale(1); }
 		}
 
 		.icon {
 			font-size: 3rem;
+			margin-top: 30px;
 			color: #fff;
-			margin-top: 20px;
+			cursor: pointer;
 			transition: transform 0.3s;
 		}
 
 		.icon:hover {
 			transform: rotate(360deg);
+		}
+
+		/* Responsive Design */
+		@media (max-width: 768px) {
+			.container {
+				padding: 30px 50px;
+			}
+
+			.title {
+				font-size: 3rem;
+			}
+
+			.message {
+				font-size: 1.2rem;
+			}
+
+			.error-code {
+				font-size: 4rem;
+			}
+
+			.illustration {
+				width: 150px;
+			}
 		}
   </style>
 </head>
@@ -78,10 +144,17 @@
 
 <div class="container">
   <div class="error-code">404</div>
-  <div class="title">Page Not Found</div>
-  <div class="message">Sorry, the page you're looking for does not exist.</div>
+  <div class="title">Oops! Page Not Found</div>
+  <div class="message">
+    Sorry, the page you're looking for doesn't exist.<br>
+    But don't worry, we can get you back on track!
+  </div>
   <a href="/" class="back-link">Go Back Home</a>
-  <div class="icon">🔄</div>
+
+  <!-- Cool Illustration (SVG or Image) -->
+  <img src="https://cdn-icons-png.flaticon.com/512/928/928134.png" alt="404 Illustration" class="illustration">
+
+  <div class="icon" onclick="window.location.reload();">🔄</div>
 </div>
 
 <script defer>
@@ -89,14 +162,15 @@
   let path = window.location.pathname;
 
   // Check if the path is '/projects'
-  if (path === "/projects") {
+  if (path === "/projects" || path === "/projects/") {
     // Redirect to '/' and reload the page
     window.location.href = "/";
   } else {
     // For all other invalid paths, update the URL to '/404' without reloading
-    window.history.replaceState({}, document.title, "/404");
+    window.history.replaceState({}, document.title, "/404/page-not-found/:)");
   }
 </script>
 
 </body>
 </html>
+
