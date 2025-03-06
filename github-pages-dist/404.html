@@ -10,7 +10,7 @@
 			font-family: 'Arial', sans-serif;
 			margin: 0;
 			padding: 0;
-			background-color: #222831;
+			background: url('https://www.transparenttextures.com/patterns/vertical-stripes.png') repeat, linear-gradient(135deg, #1b1e2d, #2b2d42);
 			color: #fff;
 			display: flex;
 			justify-content: center;
@@ -18,8 +18,7 @@
 			height: 100vh;
 			overflow: hidden;
 			text-align: center;
-			background: url('https://www.transparenttextures.com/patterns/vertical-stripes.png') repeat;
-			animation: fadeIn 1s ease-in;
+			animation: fadeIn 1.5s ease-in;
 		}
 
 		/* Fade-in Animation */
@@ -29,12 +28,14 @@
 		}
 
 		.container {
-			background: #393e46;
+			background: rgba(0, 0, 0, 0.6);
 			padding: 40px 60px;
-			border-radius: 20px;
+			border-radius: 25px;
 			box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
 			transform: scale(0.9);
 			animation: scaleUp 0.3s ease-in-out forwards;
+			max-width: 500px;
+			width: 90%;
 		}
 
 		/* Scale-up Animation */
@@ -44,14 +45,14 @@
 		}
 
 		.title {
-			font-size: 4rem;
+			font-size: 3.5rem;
 			font-weight: bold;
 			color: #f76c6c;
 			margin-bottom: 20px;
 		}
 
 		.message {
-			font-size: 1.4rem;
+			font-size: 1.2rem;
 			margin-bottom: 30px;
 			color: #f8f8f8;
 			line-height: 1.5;
@@ -66,6 +67,7 @@
 			border-radius: 8px;
 			background-color: transparent;
 			transition: all 0.3s ease;
+			margin-top: 20px;
 		}
 
 		.back-link:hover {
@@ -75,7 +77,7 @@
 		}
 
 		.error-code {
-			font-size: 6rem;
+			font-size: 5rem;
 			font-weight: 800;
 			color: #f76c6c;
 			margin-bottom: 20px;
@@ -92,7 +94,7 @@
 		}
 
 		.illustration {
-			width: 200px;
+			width: 250px;
 			margin-top: 40px;
 			animation: pulse 1.5s infinite;
 		}
@@ -119,7 +121,7 @@
 		/* Responsive Design */
 		@media (max-width: 768px) {
 			.container {
-				padding: 30px 50px;
+				padding: 30px 40px;
 			}
 
 			.title {
@@ -127,7 +129,7 @@
 			}
 
 			.message {
-				font-size: 1.2rem;
+				font-size: 1.1rem;
 			}
 
 			.error-code {
@@ -135,7 +137,29 @@
 			}
 
 			.illustration {
-				width: 150px;
+				width: 200px;
+			}
+		}
+
+		@media (max-width: 480px) {
+			.container {
+				padding: 20px 30px;
+			}
+
+			.title {
+				font-size: 2.5rem;
+			}
+
+			.message {
+				font-size: 1rem;
+			}
+
+			.error-code {
+				font-size: 3rem;
+			}
+
+			.illustration {
+				width: 180px;
 			}
 		}
   </style>
@@ -146,12 +170,12 @@
   <div class="error-code">404</div>
   <div class="title">Oops! Page Not Found</div>
   <div class="message">
-    Sorry, the page you're looking for doesn't exist.<br>
-    But don't worry, we can get you back on track!
+    The page you’re looking for has vanished into thin air.<br>
+    But don’t worry, we’ve got you covered!
   </div>
-  <a href="/" class="back-link">Go Back Home</a>
+  <a href="/" class="back-link">Return to Home</a>
 
-  <!-- Cool Illustration (SVG or Image) -->
+  <!-- Fun Illustration (SVG or Image) -->
   <img src="https://cdn-icons-png.flaticon.com/512/928/928134.png" alt="404 Illustration" class="illustration">
 
   <div class="icon" onclick="window.location.reload();">🔄</div>
@@ -162,12 +186,12 @@
   let path = window.location.pathname;
 
   // Check if the path is '/projects'
-  if (path === "/projects" || path === "/projects/") {
+  if (path === "/projects") {
     // Redirect to '/' and reload the page
     window.location.href = "/";
   } else {
     // For all other invalid paths, update the URL to '/404' without reloading
-    window.history.replaceState({}, document.title, "/404/page-not-found/:)");
+    window.history.replaceState({}, document.title, "/404/page-not-found :)");
   }
 </script>
 
