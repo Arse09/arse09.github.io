@@ -63,78 +63,23 @@
 			background: radial-gradient(circle at center, rgba(255,255,255,0.1), transparent);
 			z-index: -1;
 		}
-		canvas {
-			position: absolute;
-			top: 0;
-			left: 0;
-		}
   </style>
 </head>
 <body>
 <div class="background"></div>
 <button class="toggle-mode" onclick="toggleMode()">Toggle Mode</button>
 <div id="loading">Loading...</div>
-<canvas id="gameCanvas"></canvas>
 <div id="root" style="display: none;"></div>
 
 <script>
-  const canvas = document.getElementById('gameCanvas');
-  const ctx = canvas.getContext('2d');
   const loadingElement = document.getElementById('loading');
   const rootElement = document.getElementById('root');
   const path = window.location.pathname;
-
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-
-  let ball = {
-    x: canvas.width / 2,
-    y: canvas.height / 2,
-    radius: 20,
-    dx: 4,
-    dy: 4,
-    gravity: 0.5,
-    bounce: 0.8,
-    friction: 0.98
-  };
 
   if (path === "/projects" || path === "/projects/") {
     window.location.href = "/";
   } else {
     history.pushState(null, null, "/404/page-not-found");
-  }
-
-  function drawBall() {
-    ctx.beginPath();
-    ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
-    ctx.fillStyle = 'orange';
-    ctx.fill();
-    ctx.closePath();
-  }
-
-  function updateBall() {
-    ball.x += ball.dx;
-    ball.y += ball.dy;
-    ball.dy += ball.gravity;
-
-    if (ball.x + ball.radius > canvas.width || ball.x - ball.radius < 0) {
-      ball.dx = -ball.dx * ball.bounce;
-    }
-    if (ball.y + ball.radius > canvas.height) {
-      ball.dy = -ball.dy * ball.bounce;
-      ball.y = canvas.height - ball.radius;
-      ball.dx *= ball.friction;
-      ball.dy *= ball.friction;
-      if (Math.abs(ball.dy) < 0.1) ball.dy = 0;
-      if (Math.abs(ball.dx) < 0.1) ball.dx = 0;
-    }
-  }
-
-  function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    drawBall();
-    updateBall();
-    requestAnimationFrame(animate);
   }
 
   function getRandomDesign() {
@@ -165,7 +110,6 @@
       document.body.classList.add('light-mode');
     }
     requestAnimationFrame(loadPage);
-    animate();
   };
 </script>
 </body>
