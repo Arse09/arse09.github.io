@@ -1,12 +1,12 @@
 import React from 'react'
-import Badge, {colors} from "./Badge.tsx";
+import Badge, { colorsType } from "./Badge.tsx";
 
 type ProjectCardProps = {
 	title : string,
 	description : string,
 	badges : {
 		text: string;
-		color: keyof typeof colors;
+		color: keyof colorsType;
 	}[]
 }
 

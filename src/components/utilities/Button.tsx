@@ -7,11 +7,10 @@ type ButtonProps = {
 	className?: string;
 	children: React.ReactNode
 	linkTo?: string;
-	[key: string]: any
 }
 
 const Button: React.FC<ButtonProps> = ({ type = "button", className, children, linkTo, ...props }) => {
-	let completeClassName = clsx("button " +
+	const completeClassName = clsx("button " +
 		"px-6 py-3 rounded-md text-white font-semibold bg-gradient-to-b from-[#3B82F6] to-[#3B82F6] " +
 		"cursor-pointer text-left " +
 		"transition-colors duration-500 ease-in-out " +

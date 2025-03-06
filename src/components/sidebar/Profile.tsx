@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import clsx from 'clsx';
-import Badge, { colors } from "../utilities/Badge.tsx";
+import Badge, { colorsType } from "../utilities/Badge.tsx";
 
 type ProfileProps = {
 	avatar: string,
@@ -8,7 +8,7 @@ type ProfileProps = {
 	profession: string;
 	badges: {
 		text: string;
-		color: keyof typeof colors;
+		color: keyof colorsType;
 	}[];
 };
 

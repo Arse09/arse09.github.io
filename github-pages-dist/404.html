@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Error 404 - Page Not Found</title>
+  <style>
+		/* Global Styles */
+		body {
+			font-family: 'Arial', sans-serif;
+			margin: 0;
+			padding: 0;
+			background-color: #2b2d42;
+			color: #fff;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 100vh;
+			overflow: hidden;
+			text-align: center;
+		}
+
+		.container {
+			background: #1f2235;
+			padding: 30px 50px;
+			border-radius: 10px;
+			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+		}
+
+		.title {
+			font-size: 3rem;
+			font-weight: bold;
+			color: #f76c6c;
+			margin-bottom: 10px;
+		}
+
+		.message {
+			font-size: 1.5rem;
+			margin-bottom: 20px;
+		}
+
+		.back-link {
+			color: #8d92a3;
+			text-decoration: none;
+			font-size: 1.2rem;
+			padding: 10px 20px;
+			border: 2px solid #8d92a3;
+			border-radius: 5px;
+			background-color: transparent;
+			transition: background-color 0.3s;
+		}
+
+		.back-link:hover {
+			background-color: #8d92a3;
+			color: #2b2d42;
+		}
+
+		.error-code {
+			font-size: 5rem;
+			font-weight: 700;
+			color: #f76c6c;
+			margin-bottom: 20px;
+		}
+
+		.icon {
+			font-size: 3rem;
+			color: #fff;
+			margin-top: 20px;
+			transition: transform 0.3s;
+		}
+
+		.icon:hover {
+			transform: rotate(360deg);
+		}
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="error-code">404</div>
+  <div class="title">Page Not Found</div>
+  <div class="message">Sorry, the page you're looking for does not exist.</div>
+  <a href="/" class="back-link">Go Back Home</a>
+  <div class="icon">🔄</div>
+</div>
+
+<script>
+  // JavaScript to handle page redirection behavior
+  let path = window.location.pathname;
+
+  // Check if the path is '/projects'
+  if (path === "/projects") {
+    // Redirect to '/' and reload the page
+    window.location.href = "/";
+  } else {
+    // For all other invalid paths, update the URL to '/404' without reloading
+    window.history.replaceState({}, document.title, "/404");
+  }
+</script>
+
+</body>
+</html>

@@ -1,7 +1,10 @@
 import React, { ReactNode, HTMLAttributes } from 'react'
 import clsx from "clsx";
 
-export const colors = {
+export type colorsType = typeof colors;
+export type typesType = typeof types;
+
+const colors = {
 	blue: 'bg-blue-100 text-blue-700 ring-blue-700/10',
 	green: 'bg-green-100 text-green-700 ring-green-600/20',
 	gray: 'bg-gray-100 text-gray-800 ring-gray-500/10',
@@ -14,7 +17,7 @@ export const colors = {
 	sky: 'bg-sky-100 text-sky-800 ring-sky-600/20'
 };
 
-export const types = {
+const types = {
 	html: { classNames: 'bg-orange-100 text-orange-700 ring-orange-700/10', text: 'HTML5' },
 	css: { classNames: 'bg-purple-100 text-purple-700 ring-purple-700/10', text: 'CSS3' },
 	js: { classNames: 'bg-yellow-100 text-yellow-800 ring-yellow-700/10', text: 'JavaScript' },
@@ -35,18 +38,17 @@ export const types = {
 	redis: { classNames: 'bg-orange-100 text-orange-700 ring-orange-700/10', text: 'Redis'},
 	firebase: { classNames: 'bg-orange-100 text-orange-700 ring-orange-700/10', text: 'Firebase'},
 	aws: { classNames: 'bg-blue-100 text-blue-700 ring-blue-700/10', text: 'AWS'},
-	
 }
 
-type BadgeProps = {
-	type?: keyof typeof types,
-	className?: string,
-	text?: string,
-	color?: keyof typeof colors,
-	children?: ReactNode
-} & HTMLAttributes<HTMLElement>;
+type BadgeProps = HTMLAttributes<HTMLSpanElement> & {
+	type?: keyof typesType;
+	text?: string;
+	color?: keyof colorsType;
+	children?: ReactNode;
+};
 
 const Badge: React.FC<BadgeProps> = ({ type, text, color, children, className, ...props }) => {
+	
 	if (type && !(type in types)) {
 		throw new TypeError(`Invalid type: ${type}. Must be one of ${Object.keys(types).join(', ')}`);
 	}
@@ -55,8 +57,8 @@ const Badge: React.FC<BadgeProps> = ({ type, text, color, children, className, .
 		color = 'gray';
 	}
 	
-	let classNames = type ? types[type].classNames : colors[color ?? 'gray'];
-	let badgeText = type ? types[type].text : text;
+	const classNames = type ? types[type].classNames : colors[color ?? 'gray'];
+	const badgeText = type ? types[type].text : text;
 	
 	return (
 		<span {...props} className={clsx(
