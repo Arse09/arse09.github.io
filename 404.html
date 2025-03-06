@@ -1,0 +1,77 @@
+<!-- 404.html - Custom 404 Page for GitHub Pages -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 - Page Not Found</title>
+  <style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+		body {
+			font-family: Arial, sans-serif;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			height: 100vh;
+			background-color: #121212;
+			color: #ffffff;
+			text-align: center;
+			flex-direction: column;
+		}
+		h1 {
+			font-size: 5rem;
+			margin-bottom: 10px;
+		}
+		p {
+			font-size: 1.2rem;
+			margin-bottom: 20px;
+		}
+		a {
+			color: #ff9800;
+			text-decoration: none;
+			font-weight: bold;
+		}
+		a:hover {
+			text-decoration: underline;
+		}
+  </style>
+</head>
+<body>
+<script>
+  let path = window.location.pathname;
+  if (path.endsWith("/")) {
+    path = path.slice(0, -1);
+  }
+  if (path.endsWith("/index.html")) {
+    path = path.slice(0, -11);
+  }
+  if (path === "") {
+    path = "/";
+  }
+
+  let newPath = "";
+  if (path === "/projects") {
+    newPath = "/";
+  } else {
+    newPath = "/404.html";
+  }
+
+  if (path !== newPath) {
+    window.location.href = newPath;
+  }
+</script>
+
+<h1>404</h1>
+<p>The page you're looking for doesn't exist.</p>
+<p><a href="/">Go back home</a></p>
+
+<p style="margin-top: 20px; font-size: 0.9rem; opacity: 0.7;">
+  PS: I know this page is still simple, but I'll improve it soon. Thanks! 😃
+</p>
+</body>
+</html>
+
